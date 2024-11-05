@@ -63,6 +63,7 @@ class SKLMatchedPairsCGL():
         self.normalize = normalize
         self.split_fracs = split_fracs
         self.seed = seed
+        self.rng = np.random.default_rng(seed=self.seed)
         
         self._load()
         self._split()
@@ -84,18 +85,24 @@ class SKLMatchedPairsCGL():
 
     def _split(self):
         '''Split into train, development, and test sets'''
-        labels = get_split_idcs(self.n_samples, fractions=self.split_fracs, seed=self.seed)
+        split_idcs = get_split_idcs(self.n_samples, self.rng, fractions=self.split_fracs)
 
-        self.X_train = np.concatenate((self._data0[labels[0]], self._data1[labels[0]]))
-        self.X_dev = np.concatenate((self._data0[labels[1]], self._data1[labels[1]]))
-        self.X_test = np.concatenate((self._data0[labels[2]], self._data1[labels[2]]))
+        halves_dev = get_split_half_idcs(split_idcs[1], self.rng)
+        halves_test = get_split_half_idcs(split_idcs[2], self.rng)
+
+        self.X_train = np.concatenate((self._data0[split_idcs[0]], self._data1[split_idcs[0]]))
+        self.X_dev = np.concatenate((self._data0[halves_dev[0]], self._data1[halves_dev[1]]))
+        self.X_test = np.concatenate((self._data0[halves_test[0]], self._data1[halves_test[1]]))
 
         del self._data0
         del self._data1
 
-        self.y_train = np.concatenate((np.zeros(np.sum(labels[0])), np.ones(np.sum(labels[0])))).astype(int)
-        self.y_dev = np.concatenate((np.zeros(np.sum(labels[1])), np.ones(np.sum(labels[1])))).astype(int)
-        self.y_test = np.concatenate((np.zeros(np.sum(labels[2])), np.ones(np.sum(labels[2])))).astype(int)
+        self.y_train = np.concatenate((np.zeros(np.sum(split_idcs[0])),
+                                       np.ones(np.sum(split_idcs[0])))).astype(int)
+        self.y_dev = np.concatenate((np.zeros(np.sum(halves_dev[0])),
+                                     np.ones(np.sum(halves_dev[1])))).astype(int)
+        self.y_test = np.concatenate((np.zeros(np.sum(halves_test[0])),
+                                      np.ones(np.sum(halves_test[1])))).astype(int)
 
 
 ### HELPERS ###
@@ -137,7 +144,7 @@ def load_cgl_sample(filepath, normalize=True, flatten=False):
     return sample
 
 
-def get_split_idcs(n_samples, fractions=(0.6, 0.2, 0.2), seed=1234):
+def get_split_idcs(n_samples, rng, fractions=(0.6, 0.2, 0.2)):
     '''Indices that dataset into training, development, and test sets
 
     Parameters
@@ -145,11 +152,11 @@ def get_split_idcs(n_samples, fractions=(0.6, 0.2, 0.2), seed=1234):
     n_samples : int
         Number of samples
 
+    rng : np.random.Generator
+        Random-number generator
+
     fractions : np.ndarray, optional
         Array of floats that sum to 1
-
-    seed : int, optional
-        Randomization seed
 
     Returns
     -------
@@ -159,15 +166,50 @@ def get_split_idcs(n_samples, fractions=(0.6, 0.2, 0.2), seed=1234):
     '''
     # get sizes of datasets in samples
     set_sizes = (n_samples*np.array(fractions)).astype(int)
-    set_sizes[0] += n_samples-np.sum(set_sizes) # round up largest
+    # set_sizes[0] += n_samples-np.sum(set_sizes) # round up largest
 
     # initialize destination dataset labels for samples
     set_labels = [i*np.ones(set_sizes[i]) for i in range(len(set_sizes))]
     set_labels = np.concatenate(set_labels)
 
     # shuffle destination labels to randomize samples to datasets
-    rng = np.random.default_rng(seed=seed)
     rng.shuffle(set_labels)
 
     split_idcs = np.array([set_labels == i for i in range(len(set_sizes))])
     return split_idcs
+
+
+def get_split_half_idcs(split_idc, rng):
+    '''Halve data split indices to sample only one element per matched pair
+
+    Parameters
+    ----------
+    split_idc : np.ndarray
+        1D array of bools, True positions are sampled for dataset
+    
+    rng : np.random.Generator
+        Random-number generator
+
+    Returns
+    -------
+    split_haves : np.ndarray
+        Array of random bools with one False per column where split_idc is True,
+        two False per column where split_idc is False
+        Rows have same sum
+    '''
+    n_pairs = np.sum(split_idc) # get number of pairs
+
+    # get random half True half False arrays
+    half_0_trues = np.array(n_pairs//2*[True]+(n_pairs-n_pairs//2)*[False])
+    rng.shuffle(half_0_trues)
+    half_1_trues = ~half_0_trues
+
+    true_idcs = np.flatnonzero(split_idc) # get locations of True
+    # copy split_idc
+    half_0 = np.copy(split_idc)
+    half_1 = np.copy(split_idc)
+    # randomly assign each True to a half
+    half_0[true_idcs] = half_0_trues
+    half_1[true_idcs] = half_1_trues
+
+    return half_0, half_1
