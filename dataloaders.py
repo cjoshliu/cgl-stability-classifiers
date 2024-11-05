@@ -93,9 +93,9 @@ class SKLMatchedPairsCGL():
         del self._data0
         del self._data1
 
-        self.y_train = np.concatenate((np.zeros(np.sum(labels[0])), np.ones(np.sum(labels[0]))))
-        self.y_dev = np.concatenate((np.zeros(np.sum(labels[1])), np.ones(np.sum(labels[1]))))
-        self.y_test = np.concatenate((np.zeros(np.sum(labels[2])), np.ones(np.sum(labels[2]))))
+        self.y_train = np.concatenate((np.zeros(np.sum(labels[0])), np.ones(np.sum(labels[0])))).astype(int)
+        self.y_dev = np.concatenate((np.zeros(np.sum(labels[1])), np.ones(np.sum(labels[1])))).astype(int)
+        self.y_test = np.concatenate((np.zeros(np.sum(labels[2])), np.ones(np.sum(labels[2])))).astype(int)
 
 
 ### HELPERS ###
