@@ -5,7 +5,6 @@ import numpy as np
 import os
 from pathlib import Path
 from scipy.io import loadmat
-from sklearn.model_selection import train_test_split
 
 
 # matched-pairs dataset class for scikit-learn
@@ -22,6 +21,12 @@ class SKLMatchedPairsCGL():
     data1_dir : str or PosixPath
         Name of directory containing transient samples
         Filenames should match those of data0_dir
+
+    train_match : str, optional
+        'all_matches' uses all matched pairs (not in dev or test) in training set
+        'half_matches' uses half of all matched pairs (not in dev or test) in training set
+        This option is to make fair comparison (same dataset size) with 'unmatched_halves'
+        'unmatched_halves' uses unmatched data (halves of each matched pair) in training
 
     normalize : bool, optional
         Whether or not to normalize samples
@@ -44,10 +49,14 @@ class SKLMatchedPairsCGL():
         Training, development, and test set features
     
     y_train, y_dev, y_test : np.ndarray
-        Training, development, and test set labels
+        Training, development, and test set targets
 
     """
-    def __init__(self, data0_dir, data1_dir, normalize=True, split_fracs=(0.6, 0.2, 0.2), seed=1234):
+    def __init__(self, data0_dir, data1_dir,
+                 train_match='all_matches',
+                 normalize=True,
+                 split_fracs=(0.6, 0.2, 0.2),
+                 seed=1234):
         self.data0_dir = Path(data0_dir)
         self.data1_dir = Path(data1_dir)
 
@@ -60,6 +69,7 @@ class SKLMatchedPairsCGL():
                                             normalize=False, flatten=True))
         self.n_samples = len(self.data_fns)
 
+        self.train_match = train_match
         self.normalize = normalize
         self.split_fracs = split_fracs
         self.seed = seed
@@ -87,22 +97,35 @@ class SKLMatchedPairsCGL():
         '''Split into train, development, and test sets'''
         split_idcs = get_split_idcs(self.n_samples, self.rng, fractions=self.split_fracs)
 
+        halves_train = get_split_half_idcs(split_idcs[0], self.rng)
         halves_dev = get_split_half_idcs(split_idcs[1], self.rng)
         halves_test = get_split_half_idcs(split_idcs[2], self.rng)
 
-        self.X_train = np.concatenate((self._data0[split_idcs[0]], self._data1[split_idcs[0]]))
+        if self.train_match == 'all_matches':
+            self.X_train = np.concatenate((self._data0[split_idcs[0]], self._data1[split_idcs[0]]))
+            self.y_train = np.concatenate((np.zeros(np.sum(split_idcs[0])),
+                                           np.ones(np.sum(split_idcs[0])))).astype(int)
+        elif self.train_match == 'half_matches':
+            self.X_train = np.concatenate((self._data0[halves_train[1]], self._data1[halves_train[1]]))
+            self.y_train = np.concatenate((np.zeros(np.sum(halves_train[1])),
+                                           np.ones(np.sum(halves_train[1])))).astype(int)
+        elif self.train_match == 'unmatched_halves':
+            self.X_train = np.concatenate((self._data0[halves_train[0]], self._data1[halves_train[1]]))
+            self.y_train = np.concatenate((np.zeros(np.sum(halves_train[0])),
+                                           np.ones(np.sum(halves_train[1])))).astype(int)
+        else: raise ValueError("train_match must be 'all_matches', 'half_matches', or 'unmatched_halves'")
+
         self.X_dev = np.concatenate((self._data0[halves_dev[0]], self._data1[halves_dev[1]]))
+        self.y_dev = np.concatenate((np.zeros(np.sum(halves_dev[0])),
+                                     np.ones(np.sum(halves_dev[1])))).astype(int)
+
         self.X_test = np.concatenate((self._data0[halves_test[0]], self._data1[halves_test[1]]))
+        self.y_test = np.concatenate((np.zeros(np.sum(halves_test[0])),
+                                      np.ones(np.sum(halves_test[1])))).astype(int)
 
         del self._data0
         del self._data1
 
-        self.y_train = np.concatenate((np.zeros(np.sum(split_idcs[0])),
-                                       np.ones(np.sum(split_idcs[0])))).astype(int)
-        self.y_dev = np.concatenate((np.zeros(np.sum(halves_dev[0])),
-                                     np.ones(np.sum(halves_dev[1])))).astype(int)
-        self.y_test = np.concatenate((np.zeros(np.sum(halves_test[0])),
-                                      np.ones(np.sum(halves_test[1])))).astype(int)
 
 
 ### HELPERS ###
@@ -168,14 +191,14 @@ def get_split_idcs(n_samples, rng, fractions=(0.6, 0.2, 0.2)):
     set_sizes = (n_samples*np.array(fractions)).astype(int)
     # set_sizes[0] += n_samples-np.sum(set_sizes) # round up largest
 
-    # initialize destination dataset labels for samples
-    set_labels = [i*np.ones(set_sizes[i]) for i in range(len(set_sizes))]
-    set_labels = np.concatenate(set_labels)
+    # initialize destination dataset indices for samples
+    set_idcs = [i*np.ones(set_sizes[i]) for i in range(len(set_sizes))]
+    set_idcs = np.concatenate(set_idcs)
 
-    # shuffle destination labels to randomize samples to datasets
-    rng.shuffle(set_labels)
+    # shuffle destination indices to randomize samples to datasets
+    rng.shuffle(set_idcs)
 
-    split_idcs = np.array([set_labels == i for i in range(len(set_sizes))])
+    split_idcs = np.array([set_idcs == i for i in range(len(set_sizes))])
     return split_idcs
 
 
