@@ -1,0 +1,112 @@
+%apsrev4-2.bst 2019-01-14 (MD) hand-edited version of apsrev4-1.bst
+%Control: key (0)
+%Control: author (8) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (0) allowed
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{20}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{https://doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Ginzburg}\ and\ \citenamefont {Landau}(1950)}]{ginzburg1950k}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.~L.}\ \bibnamefont {Ginzburg}}\ and\ \bibinfo {author} {\bibfnamefont {L.~D.}\ \bibnamefont {Landau}},\ }\bibfield  {title} {\bibinfo {title} {K teorij sverkhprovodimosti},\ }\href {https://doi.org/10.1016/B978-0-08-010586-4.50078-X} {\bibfield  {journal} {\bibinfo  {journal} {Zh. Eksp. Teor. Fiz.}\ }\textbf {\bibinfo {volume} {20}},\ \bibinfo {pages} {1064} (\bibinfo {year} {1950})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Aranson}\ and\ \citenamefont {Kramer}(2002)}]{aranson2002world}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.~S.}\ \bibnamefont {Aranson}}\ and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {Kramer}},\ }\bibfield  {title} {\bibinfo {title} {The world of the complex {G}inzburg-{L}andau equation},\ }\href {https://doi.org/10.1103/RevModPhys.74.99} {\bibfield  {journal} {\bibinfo  {journal} {Rev. Mod. Phys.}\ }\textbf {\bibinfo {volume} {74}},\ \bibinfo {pages} {99} (\bibinfo {year} {2002})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Kuramoto}(1984)}]{kuramoto1984chemical}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Kuramoto}},\ }\href {https://doi.org/10.1007/978-3-642-69689-3} {\emph {\bibinfo {title} {Chemical Oscillations, Waves, and Turbulence}}}\ (\bibinfo  {publisher} {Springer Berlin},\ \bibinfo {address} {Heidelberg, Baden-W\"urttemberg, Germany},\ \bibinfo {year} {1984})\ pp.\ \bibinfo {pages} {111--140}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Turing}(1952)}]{turing1952chemical}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~M.}\ \bibnamefont {Turing}},\ }\bibfield  {title} {\bibinfo {title} {The chemical basis of morphogenesis},\ }\href {https://doi.org/10.1098/rstb.1952.0012} {\bibfield  {journal} {\bibinfo  {journal} {Phil. Trans. R. Soc. B}\ }\textbf {\bibinfo {volume} {237}},\ \bibinfo {pages} {37} (\bibinfo {year} {1952})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Wigbers}\ \emph {et~al.}(2021)\citenamefont {Wigbers}, \citenamefont {Tan}, \citenamefont {Brauns}, \citenamefont {Liu}, \citenamefont {Swartz}, \citenamefont {Frey},\ and\ \citenamefont {Fakhri}}]{wigbers2021hierarchy}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Wigbers}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Tan}}, \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Brauns}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Liu}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Swartz}}, \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Frey}},\ and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Fakhri}},\ }\bibfield  {title} {\bibinfo {title} {A hierarchy of protein patterns robustly decodes cell shape information},\ }\href {https://doi.org/10.1038/s41567-021-01164-9} {\bibfield  {journal} {\bibinfo  {journal} {Nat. Phys.}\ }\textbf {\bibinfo {volume} {17}},\ \bibinfo {pages} {578} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Tan}\ \emph {et~al.}(2020)\citenamefont {Tan}, \citenamefont {Liu}, \citenamefont {Miller}, \citenamefont {Tekant}, \citenamefont {Dunkel},\ and\ \citenamefont {Fakhri}}]{tan2020topological}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Tan}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Liu}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Miller}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Tekant}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Dunkel}},\ and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Fakhri}},\ }\bibfield  {title} {\bibinfo {title} {Topological turbulence in the membrane of a living cell},\ }\href {https://doi.org/10.1038/s41567-020-0841-9} {\bibfield  {journal} {\bibinfo  {journal} {Nat. Phys.}\ }\textbf {\bibinfo {volume} {16}},\ \bibinfo {pages} {657} (\bibinfo {year} {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Liu}\ \emph {et~al.}(2021)\citenamefont {Liu}, \citenamefont {Totz}, \citenamefont {Miller}, \citenamefont {Hastewell}, \citenamefont {Chao}, \citenamefont {Dunkel},\ and\ \citenamefont {Fakhri}}]{liu2021topological}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Liu}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Totz}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Miller}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Hastewell}}, \bibinfo {author} {\bibfnamefont {Y.-C.}\ \bibnamefont {Chao}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Dunkel}},\ and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Fakhri}},\ }\bibfield  {title} {\bibinfo {title} {Topological braiding and virtual particles on the cell membrane},\ }\href {https://doi.org/10.1073/pnas.2104191118} {\bibfield  {journal} {\bibinfo  {journal} {Proc. Natl. Acad. Sci. U.S.A.}\ }\textbf {\bibinfo {volume} {118}},\ \bibinfo {pages} {e2104191118} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Chat{\'e}}\ and\ \citenamefont {Manneville}(1996)}]{chate1996phase}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Chat{\'e}}}\ and\ \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Manneville}},\ }\bibfield  {title} {\bibinfo {title} {Phase diagram of the two-dimensional complex {G}inzburg-{L}andau equation},\ }\href {https://doi.org/10.1016/0378-4371(95)00361-4} {\bibfield  {journal} {\bibinfo  {journal} {Physica A}\ }\textbf {\bibinfo {volume} {224}},\ \bibinfo {pages} {348} (\bibinfo {year} {1996})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Huber}\ \emph {et~al.}(1992)\citenamefont {Huber}, \citenamefont {Alstr{\o}m},\ and\ \citenamefont {Bohr}}]{huber1992nucleation}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Huber}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Alstr{\o}m}},\ and\ \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Bohr}},\ }\bibfield  {title} {\bibinfo {title} {Nucleation and transients at the onset of vortex turbulence},\ }\href {https://doi.org/10.1103/PhysRevLett.69.2380} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {69}},\ \bibinfo {pages} {2380} (\bibinfo {year} {1992})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Guillamat}\ \emph {et~al.}(2022)\citenamefont {Guillamat}, \citenamefont {Blanch-Mercader}, \citenamefont {Pernollet}, \citenamefont {Kruse},\ and\ \citenamefont {Roux}}]{guillamat2022integer}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Guillamat}}, \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Blanch-Mercader}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Pernollet}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Kruse}},\ and\ \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Roux}},\ }\bibfield  {title} {\bibinfo {title} {Integer topological defects organize stresses driving tissue morphogenesis},\ }\href {https://doi.org/10.1038/s41563-022-01194-5} {\bibfield  {journal} {\bibinfo  {journal} {Nat. Mater.}\ }\textbf {\bibinfo {volume} {21}},\ \bibinfo {pages} {588} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Van~Glist}(2020)}]{vanglist2020time}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Van~Glist}},\ }\bibfield  {title} {\bibinfo {title} {A time to grow and a time to pause},\ }\href {https://doi.org/10.1126/science.aba8064} {\bibfield  {journal} {\bibinfo  {journal} {Science}\ }\textbf {\bibinfo {volume} {367}},\ \bibinfo {pages} {851} (\bibinfo {year} {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Winterbottom}(2005)}]{winterbottom2005complex}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Winterbottom}},\ }\href@noop {} {\bibinfo {title} {The complex {G}inzburg-{L}andau equation}},\ \bibinfo {howpublished} {\url{https://github.com/codeinthehole/codeinthehole.com/blob/58ad3d28ddefb64350ec883b291d4dbe1df096f7/www/static/tutorial/files/CGLsim2D.m}} (\bibinfo {year} {2005})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Li}\ \emph {et~al.}(2024)\citenamefont {Li}, \citenamefont {Liu}, \citenamefont {Szurek},\ and\ \citenamefont {Fakhri}}]{li2024measuring}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Li}}, \bibinfo {author} {\bibfnamefont {C.~W.~J.}\ \bibnamefont {Liu}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Szurek}},\ and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Fakhri}},\ }\bibfield  {title} {\bibinfo {title} {Measuring irreversibility from learned representations of biological patterns},\ }\href {https://doi.org/10.1103/PRXLife.2.033013} {\bibfield  {journal} {\bibinfo  {journal} {PRX Life}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages} {033013} (\bibinfo {year} {2024})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Cox}\ and\ \citenamefont {Matthews}(2002)}]{cox2002exponential}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Cox}}\ and\ \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Matthews}},\ }\bibfield  {title} {\bibinfo {title} {Exponential time differencing for stiff systems},\ }\href {https://doi.org/10.1006/jcph.2002.6995} {\bibfield  {journal} {\bibinfo  {journal} {J. Comput. Phys.}\ }\textbf {\bibinfo {volume} {176}},\ \bibinfo {pages} {430} (\bibinfo {year} {2002})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Pedregosa}\ \emph {et~al.}(2011)\citenamefont {Pedregosa}, \citenamefont {Varoquaux}, \citenamefont {Gramfort}, \citenamefont {Michel}, \citenamefont {Thirion}, \citenamefont {Grisel}, \citenamefont {Blondel}, \citenamefont {Prettenhofer}, \citenamefont {Weiss}, \citenamefont {Dubourg}, \citenamefont {Vanderplas}, \citenamefont {Passos}, \citenamefont {Cournapeau}, \citenamefont {Brucher}, \citenamefont {Perrot},\ and\ \citenamefont {Duchesnay}}]{scikit-learn}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Pedregosa}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Varoquaux}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Gramfort}}, \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Michel}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont {Thirion}}, \bibinfo {author} {\bibfnamefont {O.}~\bibnamefont {Grisel}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Blondel}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Prettenhofer}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Weiss}}, \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Dubourg}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Vanderplas}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Passos}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Cournapeau}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Brucher}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Perrot}},\ and\ \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Duchesnay}},\ }\bibfield  {title} {\bibinfo {title} {Scikit-learn: Machine learning in {P}ython},\ }\href {http://jmlr.org/papers/v12/pedregosa11a.html} {\bibfield  {journal} {\bibinfo  {journal} {J. Mach. Learn. Res.}\ }\textbf {\bibinfo {volume} {12}},\ \bibinfo {pages} {2825} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Liu}\ and\ \citenamefont {Nocedal}(1989)}]{lbfgs}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.~C.}\ \bibnamefont {Liu}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Nocedal}},\ }\bibfield  {title} {\bibinfo {title} {On the limited memory bfgs method for large scale optimization},\ }\href {https://doi.org/10.1007/BF01589116} {\bibfield  {journal} {\bibinfo  {journal} {Math. Program.}\ }\textbf {\bibinfo {volume} {45}},\ \bibinfo {pages} {503} (\bibinfo {year} {1989})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Defazio}\ \emph {et~al.}(2014)\citenamefont {Defazio}, \citenamefont {Bach},\ and\ \citenamefont {Lacoste-Julien}}]{saga}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Defazio}}, \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Bach}},\ and\ \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Lacoste-Julien}},\ }\bibfield  {title} {\bibinfo {title} {{SAGA}: a fast incremental gradient method with support for non-strongly convex composite objectives},\ }in\ \href {https://doi.org/10.48550/arXiv.1407.0202} {\emph {\bibinfo {booktitle} {Proceedings of the 27th International Conference on Neural Information Processing Systems}}},\ \bibinfo {series} {NIPS'14}, Vol.~\bibinfo {volume} {1}\ (\bibinfo  {publisher} {MIT Press},\ \bibinfo {address} {Cambridge, MA, USA},\ \bibinfo {year} {2014})\ p.\ \bibinfo {pages} {1646–1654}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Breiman}(1996)}]{breiman1996bagging}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {Breiman}},\ }\bibfield  {title} {\bibinfo {title} {Bagging predictors},\ }\href {https://doi.org/10.1007/BF00058655} {\bibfield  {journal} {\bibinfo  {journal} {Machine Learning}\ }\textbf {\bibinfo {volume} {24}},\ \bibinfo {pages} {123} (\bibinfo {year} {1996})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Breiman}\ \emph {et~al.}(1984)\citenamefont {Breiman}, \citenamefont {Friedman}, \citenamefont {Olshen},\ and\ \citenamefont {Stone}}]{breiman1984classification}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {Breiman}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Friedman}}, \bibinfo {author} {\bibfnamefont {R.~A.}\ \bibnamefont {Olshen}},\ and\ \bibinfo {author} {\bibfnamefont {C.~J.}\ \bibnamefont {Stone}},\ }\href {https://doi.org/10.1201/9781315139470} {\emph {\bibinfo {title} {Classification and Regression Trees}}}\ (\bibinfo  {publisher} {Taylor \& Francis},\ \bibinfo {address} {New York, NY, USA},\ \bibinfo {year} {1984})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Freund}\ and\ \citenamefont {Schapire}(1997)}]{adaboost}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Freund}}\ and\ \bibinfo {author} {\bibfnamefont {R.~E.}\ \bibnamefont {Schapire}},\ }\bibfield  {title} {\bibinfo {title} {A decision-theoretic generalization of on-line learning and an application to boosting},\ }\href {https://doi.org/10.1006/jcss.1997.1504} {\bibfield  {journal} {\bibinfo  {journal} {J. Comput. Syst. Sci.}\ }\textbf {\bibinfo {volume} {55}},\ \bibinfo {pages} {119} (\bibinfo {year} {1997})}\BibitemShut {NoStop}%
+\end{thebibliography}%

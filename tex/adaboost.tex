@@ -1,0 +1,21 @@
+\section{AdaBoost}
+We next used AdaBoost to assess the 
+
+Since AdaBoost allows all kinds of weak classifiers as the base estimator, we choose the default two-leaf decision tree to reduce the complexity.
+
+We first tested the performance of the algorithm on matched-pair dataset (half-sized), unmatched dataset (half-sized), and the full-sized dataset.
+The hyperparameters are all set to default during this test.
+
+The results are shown in Figure T. Though the matched-pair dataset and full-sized dataset performs slightly better, the difference is small and may be not significant.
+
+We then tune our hyperparameters. We set our candidate iterations from 16 to 256, and the learning rate from 0.25 to 2. We tested 10 runs for each iterations-learning rate pair in order to calculate the corresponding accuracy. The result is shown in Figure U. During this process, the base estimator is still fixed to the default two-leaf decision tree, and the accuracy is evaluated through the dev dataset.
+
+It is obvious that the performance of the model increases as the number of iterations increases. Moreover, despite the bad performance when the learning rate is 2, the performance also increases as the learning rate increases. This is an expected result since “a trade off between number of iterations and learning rate” was noted in the documentation in AdaBoostClassifier, which implies that more number of iterations is needed for lower learning rate.
+
+Another interesting trade-off is that higher learning rate results in higher PPV and specificity, while lower  learning rate results in higher NPV and sensitivity. We are not sure about the mechanism behind this phenomenon, but it emphasizes the importance of tuning the hyperparameter, while we can create either a high PPV model or a high NPV model depending on the condition.
+
+Among all conditions, the best performance occurs when iterations = 256 and learning rate = 0.5, with the corresponding accuracy of 0.96. However, since the accuracy already reaches 0.94 when iterations = 128 and learning rate = 1 is, it’s reasonable to conclude that the accuracy is arriving at a plateau when we have iterations > 128.
+
+Lastly, we dive into the Gini impurity of each feature which is the amplitude and phase of a single pixel. The Gini impurity indicates the importance of each pixel that is involved in the classifier. The number of iterations is set to 128 while the learning rate is 1. The result is shown in Figure V. 
+
+Due to the characteristics of AdaBoost, only sparse pixels are used in the classifier. It’s not surprising to find that all important pixels sit on the side of amplitude, indicating that the difference in amplitude carries more useful information in classification.
