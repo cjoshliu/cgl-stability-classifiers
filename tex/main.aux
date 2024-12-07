@@ -14,39 +14,63 @@
 \citation{liu2021topological}
 \citation{guillamat2022integer}
 \citation{vanglist2020time}
-\citation{winterbottom2005complex,li2024measuring}
-\citation{cox2002exponential}
-\newlabel{FirstPage}{{}{1}{}{Doc-Start}{}}
-\@writefile{toc}{\contentsline {title}{CS229 Project: Detecting Steady States of the Complex Ginzburg-Landau Equation}{1}{section*.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section*.2}\protected@file@percent }
+\citation{brunton2020machine}
+\citation{said1984testing}
+\citation{li2024measuring}
+\citation{nicolaou2023data}
+\citation{brunton2016discovering}
+\citation{herrmann2021data}
+\newlabel{FirstPage}{{}{1}{}{section*.1}{}}
+\@writefile{toc}{\contentsline {title}{CS229 Project: Detecting Steady States of the Complex Ginzburg-Landau Equation}{1}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {abstract}{Abstract}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section*.3}\protected@file@percent }
 \newlabel{eqn:cgl}{{1}{1}{}{equation.1.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Snapshots of randomly sampled transient ($t=10^3$) and steady-state CGL wavefunctions. Neither amplitudes nor phases show obvious inter-class differences. Note that vortices in the phase field center on low-amplitude defects (blue).}}{1}{figure.1}\protected@file@percent }
 \newlabel{fig:samples_indistinguishable}{{1}{1}{Snapshots of randomly sampled transient ($t=10^3$) and steady-state CGL wavefunctions. Neither amplitudes nor phases show obvious inter-class differences. Note that vortices in the phase field center on low-amplitude defects (blue)}{figure.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {II}Related work}{1}{section*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {III}Data and features}{1}{section*.4}\protected@file@percent }
+\citation{zhou2023development}
+\citation{aranson2002world}
+\citation{halford2013standardized}
+\citation{winterbottom2005complex,li2024measuring}
+\citation{cox2002exponential}
 \citation{scikit-learn}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related work}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}Data and features}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Logistic regression}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}Method}{2}{section*.7}\protected@file@percent }
+\newlabel{eqn:lr_hypothesis}{{2}{2}{}{equation.4.2}{}}
 \citation{lbfgs}
 \citation{saga}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Transients and steady states are more readily distinguished in matched pairs. Transients exhibit slightly more low-amplitude defects (blue) and wider high-amplitude vortex-domain boundaries (yellow) than steady states.  }}{2}{figure.2}\protected@file@percent }
-\newlabel{fig:matched_pairs}{{2}{2}{Transients and steady states are more readily distinguished in matched pairs. Transients exhibit slightly more low-amplitude defects (blue) and wider high-amplitude vortex-domain boundaries (yellow) than steady states}{figure.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Logistic regression}{2}{section*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A}Method}{2}{section*.6}\protected@file@percent }
-\newlabel{eqn:lr_hypothesis}{{2}{2}{}{equation.4.2}{}}
-\newlabel{eqn:lr_loss}{{3}{2}{}{equation.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B}Experiments, results, and discussion}{2}{section*.7}\protected@file@percent }
 \citation{scikit-learn}
 \citation{breiman1996bagging,breiman1984classification}
-\citation{adaboost}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Transients and steady states are more readily distinguished in matched pairs. Transients exhibit slightly more low-amplitude defects (blue) and wider high-amplitude vortex-domain boundaries (yellow) than steady states.  }}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:matched_pairs}{{2}{3}{Transients and steady states are more readily distinguished in matched pairs. Transients exhibit slightly more low-amplitude defects (blue) and wider high-amplitude vortex-domain boundaries (yellow) than steady states}{figure.2}{}}
+\newlabel{eqn:lr_loss}{{3}{3}{}{equation.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Experiments, results, and discussion}{3}{section*.8}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Logistic regression learns negative weights for amplitudes and nearly zero weights for phases.}}{3}{figure.3}\protected@file@percent }
 \newlabel{fig:lr_importances}{{3}{3}{Logistic regression learns negative weights for amplitudes and nearly zero weights for phases}{figure.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Random forests}{3}{section*.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A}Method}{3}{section*.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {B}Experiments, results, and discussion}{3}{section*.10}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Random-forest metrics plateau at 128 trees. Error bars show 0.95 confidence intervals.}}{3}{figure.4}\protected@file@percent }
-\newlabel{fig:rf_metrics}{{4}{3}{Random-forest metrics plateau at 128 trees. Error bars show 0.95 confidence intervals}{figure.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Random forests}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}Method}{3}{section*.10}\protected@file@percent }
+\citation{lecun2015deep}
+\citation{paszke2019pytorch}
+\citation{kingma2015adam}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Experiments, results, and discussion}{4}{section*.11}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Random-forest metrics plateau at 128 trees. Error bars show 0.95 confidence intervals.}}{4}{figure.4}\protected@file@percent }
+\newlabel{fig:rf_metrics}{{4}{4}{Random-forest metrics plateau at 128 trees. Error bars show 0.95 confidence intervals}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Samples misclassified by random forests are not visually distinctive.}}{4}{figure.5}\protected@file@percent }
+\newlabel{fig:rf_misclassified}{{5}{4}{Samples misclassified by random forests are not visually distinctive}{figure.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Convolutional neural network}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}Method}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Experiments, results, and discussion}{4}{section*.14}\protected@file@percent }
+\citation{adaboost}
 \bibdata{mainNotes,main.bib}
 \bibcite{ginzburg1950k}{{1}{1950}{{Ginzburg\ and\ Landau}}{{}}}
 \bibcite{aranson2002world}{{2}{2002}{{Aranson\ and\ Kramer}}{{}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces CNN model accuracies vary with hyperparameter choice.}}{5}{figure.6}\protected@file@percent }
+\newlabel{fig:cnn_accuracies}{{6}{5}{CNN model accuracies vary with hyperparameter choice}{figure.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Future work}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Contributions}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IX}Acknowledgements}{5}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {}References}{5}{section*.18}\protected@file@percent }
 \bibcite{kuramoto1984chemical}{{3}{1984}{{Kuramoto}}{{}}}
 \bibcite{turing1952chemical}{{4}{1952}{{Turing}}{{}}}
 \bibcite{wigbers2021hierarchy}{{5}{2021}{{Wigbers\ \emph  {et~al.}}}{{Wigbers, Tan, Brauns, Liu, Swartz, Frey,\ and\ Fakhri}}}
@@ -56,25 +80,30 @@
 \bibcite{huber1992nucleation}{{9}{1992}{{Huber\ \emph  {et~al.}}}{{Huber, Alstr{\o }m,\ and\ Bohr}}}
 \bibcite{guillamat2022integer}{{10}{2022}{{Guillamat\ \emph  {et~al.}}}{{Guillamat, Blanch-Mercader, Pernollet, Kruse,\ and\ Roux}}}
 \bibcite{vanglist2020time}{{11}{2020}{{Van~Glist}}{{}}}
-\bibcite{winterbottom2005complex}{{12}{2005}{{Winterbottom}}{{}}}
-\bibcite{li2024measuring}{{13}{2024}{{Li\ \emph  {et~al.}}}{{Li, Liu, Szurek,\ and\ Fakhri}}}
-\bibcite{cox2002exponential}{{14}{2002}{{Cox\ and\ Matthews}}{{}}}
-\bibcite{scikit-learn}{{15}{2011}{{Pedregosa\ \emph  {et~al.}}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos, Cournapeau, Brucher, Perrot,\ and\ Duchesnay}}}
-\bibcite{lbfgs}{{16}{1989}{{Liu\ and\ Nocedal}}{{}}}
-\bibcite{saga}{{17}{2014}{{Defazio\ \emph  {et~al.}}}{{Defazio, Bach,\ and\ Lacoste-Julien}}}
-\bibcite{breiman1996bagging}{{18}{1996}{{Breiman}}{{}}}
-\bibcite{breiman1984classification}{{19}{1984}{{Breiman\ \emph  {et~al.}}}{{Breiman, Friedman, Olshen,\ and\ Stone}}}
-\bibcite{adaboost}{{20}{1997}{{Freund\ and\ Schapire}}{{}}}
+\bibcite{brunton2020machine}{{12}{2020}{{Brunton\ \emph  {et~al.}}}{{Brunton, Noack,\ and\ Koumoutsakos}}}
+\bibcite{said1984testing}{{13}{1984}{{Said\ and\ Dickey}}{{}}}
+\bibcite{li2024measuring}{{14}{2024}{{Li\ \emph  {et~al.}}}{{Li, Liu, Szurek,\ and\ Fakhri}}}
+\bibcite{nicolaou2023data}{{15}{2023}{{Nicolaou\ \emph  {et~al.}}}{{Nicolaou, Huo, Chen, Brunton,\ and\ Kutz}}}
+\bibcite{brunton2016discovering}{{16}{2016}{{Brunton\ \emph  {et~al.}}}{{Brunton, Proctor,\ and\ N}}}
+\bibcite{herrmann2021data}{{17}{2021}{{Herrman\ \emph  {et~al.}}}{{Herrman, Baddoo, Semaan, Brunton,\ and\ McKeon}}}
+\bibcite{zhou2023development}{{18}{2023}{{Zhou\ \emph  {et~al.}}}{{Zhou, Yu, Cheng, R,\ and\ Dai}}}
+\bibcite{halford2013standardized}{{19}{2013}{{Halford\ \emph  {et~al.}}}{{Halford, Schalkoff, Zhou, Benbadis, Tatum, Turner, Sinha, Fountain, Arain, Pritchard, Kutluay, Martz, Edwards, Waters,\ and\ Dean}}}
+\bibcite{winterbottom2005complex}{{20}{2005}{{Winterbottom}}{{}}}
+\bibcite{cox2002exponential}{{21}{2002}{{Cox\ and\ Matthews}}{{}}}
+\bibcite{scikit-learn}{{22}{2011}{{Pedregosa\ \emph  {et~al.}}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos, Cournapeau, Brucher, Perrot,\ and\ Duchesnay}}}
+\bibcite{lbfgs}{{23}{1989}{{Liu\ and\ Nocedal}}{{}}}
+\bibcite{saga}{{24}{2014}{{Defazio\ \emph  {et~al.}}}{{Defazio, Bach,\ and\ Lacoste-Julien}}}
+\bibcite{breiman1996bagging}{{25}{1996}{{Breiman}}{{}}}
+\bibcite{breiman1984classification}{{26}{1984}{{Breiman\ \emph  {et~al.}}}{{Breiman, Friedman, Olshen,\ and\ Stone}}}
+\bibcite{lecun2015deep}{{27}{2015}{{Le{C}un\ \emph  {et~al.}}}{{Le{C}un, Bengio,\ and\ Hinton}}}
+\bibcite{paszke2019pytorch}{{28}{2019}{{Paszke\ \emph  {et~al.}}}{{Paszke, Gross, Massa, Lerer, Bradbury, Chanan, Killeen, Lin, Gimelshein, Antiga, Desmaison, Kopf, Yang, DeVito, Raison, Tejani, Chilamkurthy, Steiner, Fang, Bai,\ and\ Chintala}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Samples misclassified by random forests are not visually distinctive.}}{6}{figure.7}\protected@file@percent }
+\newlabel{fig:kernels}{{7}{6}{Samples misclassified by random forests are not visually distinctive}{figure.7}{}}
+\bibcite{kingma2015adam}{{29}{2015}{{Kingma\ and\ Ba}}{{}}}
+\bibcite{adaboost}{{30}{1997}{{Freund\ and\ Schapire}}{{}}}
 \bibstyle{apsrev4-2}
 \citation{REVTEX42Control}
 \citation{apsrev42Control}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Samples misclassified by random forests are not visually distinctive.}}{4}{figure.5}\protected@file@percent }
-\newlabel{fig:rf_misclassified}{{5}{4}{Samples misclassified by random forests are not visually distinctive}{figure.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Convolutional neural network}{4}{section*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A}Method}{4}{section*.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {B}Experiments, results, and discussion}{4}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Future work}{4}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {}References}{4}{section*.15}\protected@file@percent }
-\newlabel{LastBibItem}{{20}{4}{}{section*.15}{}}
-\newlabel{LastPage}{{}{4}{}{}{}}
-\gdef \@abspage@last{4}
+\newlabel{LastBibItem}{{30}{7}{}{section*.18}{}}
+\newlabel{LastPage}{{}{7}{}{}{}}
+\gdef \@abspage@last{7}

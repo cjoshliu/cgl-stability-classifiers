@@ -13,14 +13,26 @@
 
 \author{Chih-Wei Joshua Liu}
 \email{cjoshliu@stanford.edu}
-\affiliation{Biophysics Program, Leland Stanford Junior University, Stanford, California 94305, U.S.A.}
-\affiliation{Department of Bioengineering, Leland Stanford Junior University, Stanford, California 94305, USA}
+\affiliation{Biophysics Program, Stanford University School of Medicine, Stanford, California 94305, U.S.A.}
+\affiliation{Department of Bioengineering, Stanford University, Stanford, California 94305, USA}
 
 \author{Wen-Chieh Chao}
 \email{wenj@stanford.edu}
-\affiliation{Department of Bioengineering, Leland Stanford Junior University, Stanford, California 94305, USA}
+\affiliation{Department of Bioengineering, Stanford University, Stanford, California 94305, USA}
 
 \date{08 November 2024}
+
+\begin{abstract}
+    Many physical systems exhibit initial transients, early periods of time in which dynamics are different from those in steady state.
+    Some systems important to biological phenomena are characterized by long-lived transients, which may be difficult to distinguish from stationary steady states.
+    The complex Ginzburg-Landau (CGL) equation appears in the description of superconductors as well as numerous processes in biological development,
+    such as tissue organization and membrane waves.
+    The CGL equation's long-lived transients are difficult to distinguish from its steady states.
+    Here we examine several machine-learning methods for distinguishing transients from steady states in images of CGL wavefunctions.
+    Comparing logistic regression, random forests, and convolutional neural networks (CNNs),
+    we find that random forests and CNNs perform well as classifiers of CGL wavefunction stationarity. 
+    These findings may be useful in the study of developmental processes described by the CGL equation as well as other systems with long transients.
+\end{abstract}
 
 \maketitle
 
@@ -73,7 +85,29 @@ In the following, we propose and assess several machine-learning classifiers for
 \end{figure}
 
 \section{Related work}
+Accurately reconstructing transients remains challenging for machine-learning methods that build low-dimensional representations of complex dynamical systems,
+such as dynamical mode decomposition (DMD) \cite{brunton2020machine}.
+This is likely because transients are defined by non-stationarity,
+that is, statistics that change over time \cite{said1984testing}.
+Previous machine-learning studies of the CGL equation have thus focused on steady states:
+Li and Liu et al. \cite{li2024measuring} used variational autoencoders to represent both simulated and experimental wavefunctions of the CGL,
+but used the final records of long simulations to assure stationarity.
+Similarly, Nicolaou et al. \cite{nicolaou2023data} study steady-state CGL wavefunctions to identify control parameters using the autoencoder-like
+Sparse Identification of Nonlinear Dynamics (SINDy) model \cite{brunton2016discovering}.
+Some studies have focused specifically on the properties of CGL transients,
+such as Hermann et al., who use a modified DMD method to identify modes of transient CGL flows \cite{herrmann2021data}.
+However, to our knowledge, no studies have focused specifically on distinguishing CGL transients and steady states.
 
+Several studies have examined methods for transient detection in other dynamical systems, especially fluids.
+Zhou et al. \cite{zhou2023development} test several machine-learning algorithms for distinguishing transients from steady states in the liquid-fueled molten salt reactors of nuclear power plants,
+including recurrent neural networks, support vector machines, a decision tree, and $k$-nearest neighbors ($k$NN).
+The $k$NN model was found to have the strongest performance.
+However, nuclear power plants have fewer possible nonpathological steady states than the CGL equation, which can display a potentially infinite number of steady-state defect configurations \cite{aranson2002world}.
+Meanwhile, Halford et al. \cite{halford2013standardized} use a simple feedforward neural network and a Gaussian mixture model to identify transients in electroencephalograms, which correspond to epileptic seizures.
+Seizures exhibit spiral waves more similar to those of the CGL than the transients in nuclear power plants.
+Published in 2013, Halford et al. did not use more recent convolutional neural networks;
+moreover, the neural-network structure of the brain may make EEG signals more amenable to neural-network modeling than the CGL.
+We thus study a wide range of models, not only neural networks.
 
 \section{Data and features}
 For simplicity and representative dynamics, we simulated Eq.~\ref{eqn:cgl} with $b=0$ and $c=1$ using previously published code~\cite{winterbottom2005complex,li2024measuring}.
@@ -228,7 +262,6 @@ This may be because transients show more extreme amplitudes (more defects and hi
 We also perform error analyses by examining a random sample of misclassified wavefunctions.
 Misclassified wavefunctions are visually similar to correctly classified wavefunctions (Fig.~\ref{fig:rf_misclassified}),
 suggesting that different models may be required to achieve higher accuracies.
-We will next use AdaBoost~\cite{adaboost}, as our preliminary analyses find it achieves superior performance with greater interpretability.
 
 \begin{figure}[h]
     \centering
@@ -240,13 +273,76 @@ We will next use AdaBoost~\cite{adaboost}, as our preliminary analyses find it a
 \section{Convolutional neural network}
 \subsection{Method}
 As data are images that may contain nonlocal data relevant to transient identification,
-such as adjacent defects prone to anihilation,
-we next considered using convolutional neural network (CNN) models.
-
+such as adjacent defects prone to anihilation, we next considered using convolutional neural network (CNN) models \cite{lecun2015deep}.
+We built a feedforward CNN using the PyTorch package \cite{paszke2019pytorch}.
+Convolutional layers were followed by ReLU activation layers, which were in turn followed by maximum pooling layers.
+The output of the sequence of convolutional, ReLU, and maximum-pooling layers fed into a linear layer,
+which was followed by another ReLU layer, a single-neuron linear layer, and a final sigmoid layer for outputting class probabilities.
+All models were trained using the stochastic gradient-based Adam optimizer \cite{kingma2015adam} to minimize the binary cross entropy loss
+\begin{equation}
+    \ell = -\frac{1}{N}\sum_{i=1}^N y^{(i)}\log h_\theta (x^{(i)})+(1-y^{(i)})\log[1-h_\theta (x^{(i)})]
+\end{equation}
+where $h_\theta (x)$ denotes the probability of class 1 output by the CNN.
+All models were trained for 50 epochs; the learning rate was decayed from 0.001 by a factor of 0.1 every ten epochs.
 
 \subsection{Experiments, results, and discussion}
+To check the overall suitability of CNNs for our task, we first trained a network with two two-channel convolutional layers with 3x3 kernels,
+2x2 maximum-pooling layers, and a 16-neuron first linear layer.
+Training was performed using 64-sample minibatches.
+Evaluated on the development set, models trained on unmatched halves, half matches, and all matches achieved accuracies of 0.64, 0.66, and 0.70, respectively.
+Ten such models were trained for each dataset: accuracy standard deviations were 0.05 for all datasets.
+This performance is considerably poorer than that of logistic regression, necessitating hyperparameter tuning.
+
+We tuned the number, number of channels, and kernel size of convolutional layers,
+the use and non-use of batch normalization, and the number of neurons in the first linear layer.
+For the channel numbers of the two or three convolutional layers, we used seven options ranging from $\{2, 2\}$ to $\{2, 8, 32\}$.
+We used kernel sizes of 2x2, 4x4, and 8x8; as well as 2-, 8-, and 32-neuron first linear layers.
+Four models were trained for each hyperparameter combination.
+We found that the number of convolutional layers has little impact on performance.
+In contrast, larger kernels, larger first linear layers, and batch normalization all improve performance.
+However, the highest accuracy ($0.98\pm 0.01$) is achieved by models with $\{32, 8\}$-channel convolutional layers, batch normalization, and 2x2 kernels \ref{fig:cnn_accuracies}.
+
+\onecolumngrid\
+\begin{center}\
+\begin{figure}[h!]\
+\includegraphics[scale=0.19]{../figures/B_new.png}\
+\caption{CNN model accuracies vary with hyperparameter choice.}\
+\label{fig:cnn_accuracies}
+\end{figure}\
+\end{center}\
+\twocolumngrid\
+
+Finally, we dissect the effects of convolutional-layer hyperparameters by visualizing the filters learned in the model with $\{8, 2\}$-channel convolutional layers,
+batch normalization, a 32-neuron linear layer, and 4x4 kernels \ref{fig:kernels}.
+Applied to sampled images, some filters pick out defects (filter 1) while others pick out vortex-domain boundaries (filters 2 and 7).
+As defect density and domain size are respectively greater and lower in transient wavefunctions,
+these features are likely important for classification.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../figures/D.png}
+    \includegraphics[width=1.0\linewidth]{../figures/C.png}
+    \caption{Samples misclassified by random forests are not visually distinctive.}
+    \label{fig:kernels}
+\end{figure}
 
 \section{Future work}
+As the random forest forest classifier achieves high accuracy, it would be useful to examine whether other decision-tree ensembling methods might produce better performance.
+In particular, AdaBoost~\cite{adaboost} could achieve superior performance with greater interpretability.
+Similarly, the good performance of the CNN suggests that neural networks are suitable for this classification task.
+We note that the number of convolutional layers seems to have little impact on performance.
+Future research could examine whether convolutional layers are necessary at all;
+non-convolutional neural networks may be equally capable of integrating nonlocal image features.
+
+\section{Contributions}
+C.W.J.L. and W.C.C. performed logistic regression analyses.
+C.W.J.L. performed random forest analyses.
+W.C.C. performed CNN analyses.
+C.W.J.L. and W.C.C. wrote the paper.
+
+\section{Acknowledgements}
+C.W.J.L. was supported by was supported by the National Institute of General Medical Sciences of the National Institutes of Health through the Stanford Molecular Biophysics Training Program T32 grant 5T32GM136568-04.
+
 
 \bibliography{main.bib}
 
