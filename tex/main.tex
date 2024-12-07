@@ -300,31 +300,23 @@ We used kernel sizes of 2x2, 4x4, and 8x8; as well as 2-, 8-, and 32-neuron firs
 Four models were trained for each hyperparameter combination.
 We found that the number of convolutional layers has little impact on performance.
 In contrast, larger kernels, larger first linear layers, and batch normalization all improve performance.
-However, the highest accuracy ($0.98\pm 0.01$) is achieved by models with $\{32, 8\}$-channel convolutional layers, batch normalization, and 2x2 kernels \ref{fig:cnn_accuracies}.
+However, the highest accuracy ($0.98\pm 0.01$) is achieved by models with $\{32, 8\}$-channel convolutional layers, batch normalization, and 2x2 kernels.
 
-\onecolumngrid\
-\begin{center}\
-\begin{figure}[h!]\
-\includegraphics[scale=0.19]{../figures/B_new.png}\
-\caption{CNN model accuracies vary with hyperparameter choice.}\
-\label{fig:cnn_accuracies}
-\end{figure}\
-\end{center}\
-\twocolumngrid\
+% \onecolumngrid\
+% \begin{center}\
+% \begin{figure}[h!]\
+% \includegraphics[scale=0.19]{../figures/B_new.png}\
+% \caption{CNN model accuracies vary with hyperparameter choice.}\
+% \label{fig:cnn_accuracies}
+% \end{figure}\
+% \end{center}\
+% \twocolumngrid\
 
 Finally, we dissect the effects of convolutional-layer hyperparameters by visualizing the filters learned in the model with $\{8, 2\}$-channel convolutional layers,
 batch normalization, a 32-neuron linear layer, and 4x4 kernels \ref{fig:kernels}.
 Applied to sampled images, some filters pick out defects (filter 1) while others pick out vortex-domain boundaries (filters 2 and 7).
 As defect density and domain size are respectively greater and lower in transient wavefunctions,
 these features are likely important for classification.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1.0\linewidth]{../figures/D.png}
-    \includegraphics[width=1.0\linewidth]{../figures/C.png}
-    \caption{Samples misclassified by random forests are not visually distinctive.}
-    \label{fig:kernels}
-\end{figure}
 
 \section{Future work}
 As the random forest forest classifier achieves high accuracy, it would be useful to examine whether other decision-tree ensembling methods might produce better performance.
@@ -334,7 +326,7 @@ We note that the number of convolutional layers seems to have little impact on p
 Future research could examine whether convolutional layers are necessary at all;
 non-convolutional neural networks may be equally capable of integrating nonlocal image features.
 
-\section{Contributions}
+\section{Contributions and Code availability}
 C.W.J.L. and W.C.C. performed logistic regression analyses.
 C.W.J.L. performed random forest analyses.
 W.C.C. performed CNN analyses.
@@ -343,6 +335,13 @@ C.W.J.L. and W.C.C. wrote the paper.
 \section{Acknowledgements}
 C.W.J.L. was supported by was supported by the National Institute of General Medical Sciences of the National Institutes of Health through the Stanford Molecular Biophysics Training Program T32 grant 5T32GM136568-04.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\linewidth]{../figures/D.png}
+    \includegraphics[width=1.0\linewidth]{../figures/C.png}
+    \caption{Samples misclassified by random forests are not visually distinctive.}
+    \label{fig:kernels}
+\end{figure}
 
 \bibliography{main.bib}
 
